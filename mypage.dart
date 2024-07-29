@@ -20,7 +20,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool password=true;
+
 
   @override
   Widget build(BuildContext context) {
