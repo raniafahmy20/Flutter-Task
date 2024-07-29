@@ -1,101 +1,75 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traincourse/CustomWidget/CustomTextPasswordForm.dart';
 
-class mypage extends StatefulWidget {
-  const mypage({super.key});
+import 'CustomWidget/Container.dart';
+import 'CustomWidget/CustomElevatedButton.dart';
+import 'CustomWidget/CustomTextFormField.dart';
+import 'CustomWidget/Text.dart';
+import 'CustomWidget/TextButton.dart';
+import 'CustomWidget/paddingCustom.dart';
+import 'CustomWidget/sizedBox.dart';
+import 'home.dart';
+
+
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<mypage> createState() => _mypageState();
+  State<Login> createState() => _LoginState();
 }
 
-class _mypageState extends State<mypage> {
+class _LoginState extends State<Login> {
   bool password=true;
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body:
          ListView(children: [
-            Column(children: [
-             SizedBox(height: 40,),
-               Container(
-                child: Image(image: AssetImage("assets/undraw_login_re_4vu2 1.png")),
-               ),
-
-
-             Center(child: Text("Hello To Our App",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.deepPurple,fontSize: 30),)),
-
-
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Email"),
-                ),
-              ],
-            ),
-            TextFormField(
-              obscureText: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(120))),
-
-               )
-              ),
-
+            Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+             const sizedBoxCustom(height: 40, weight: 0,),
+             const CustomContainer(im: true,path:"assets/undraw_login_re_4vu2 1.png" ,),
+             const Center(
+                 child: TextCustom(text: "Hello To Our App",color: Colors.deepPurple,fsize: 30 ,fweight:FontWeight.bold ,)
+                 ),
+                   const PaddingCustomWidget(text:"Email",value: 8.0,),
+                  const CustomTextForm(securePass: false,textInputType:TextInputType.emailAddress,borderRedius: 120,
+                     iconemail:Icon(Icons.email),pass:false, iconpasson:Icon(Icons.add),iconpassoff: Icon(Icons.add_alert) ),
               Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Text("Password"),
-                  ),
-                  SizedBox(width: 70,),
-                  TextButton(onPressed:(){},
-
-                      child:Text("Forget Password?"))
-                ],
+                   const PaddingCustomWidget(text:"Password" ,value: 9.0),
+                   const sizedBoxCustom(weight: 70,height: 0),
+                   const TextButtonCustom(text: "Forget Password?",fweight:FontWeight.normal
+                        ,fsize:15 ,color: Colors.deepPurple, )
+                    ],
+                ),
+                     CustomTextPasswordForm()
+                           ,
+              const sizedBoxCustom(height: 25,weight: 0,),
+              const Center(
+                child: const CustomElevatedButton(buttonWidth: 290,buttonHeight: 60,text:"Login",elevation: 30,borderStyle: BorderStyle.solid,
+                  overlayColor:Colors.black26,buttonBackgroundColor:CupertinoColors.systemIndigo ,fontSizeText: 30,textColor:
+                  Colors.white,fweightText: FontWeight.bold,page: Home()),
               ),
 
-            TextFormField(
-                obscureText: password,
-                keyboardType: TextInputType.visiblePassword,
+              const sizedBoxCustom(height: 50,weight: 0)
 
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(120)),
-
-                    ),
-
-                    suffixIcon: PasswordIcon() )
-            ),
-
-            SizedBox(height: 25,),
-            ElevatedButton(onPressed: (){}, child: Text("Login",style: TextStyle( fontSize: 30,color: Colors.white))
-            ,style: ButtonStyle(fixedSize: MaterialStateProperty.all(Size(290, 60))
-
-                    ,side: MaterialStatePropertyAll(BorderSide(style: BorderStyle.solid)),
-                  backgroundColor: MaterialStateProperty.all(CupertinoColors.systemIndigo),
-                  elevation: MaterialStateProperty.all<double>(30),overlayColor: MaterialStateProperty.all(Colors.black26)
-                   )
-
-            )
-
-            , SizedBox(height: 50,)
-
-            ,Row(children: [ SizedBox(width: 5,),  Text("Don’t You Have Account?"),
-                             TextButton(onPressed:(){}, child:Text("Sign Up"))
-            ])
+              ,Row(children: [
+                 const sizedBoxCustom(weight: 5,height: 0),
+                 const TextCustom(text:"Don’t You Have Account?", color: Colors.black,fsize:15
+                   ,fweight: FontWeight.normal, ),
+                 const  TextButtonCustom(text:"Sign Up",fweight:FontWeight.bold ,fsize: 17,
+                    color: Colors.deepPurple,)
+                 ])
                    ]),
          ]),
-
     );
   }
-  Widget PasswordIcon(){
-
-
-    return IconButton(onPressed:(){
-       setState(() {
-         password = !password;
-       });
-    }, icon:password?Icon(Icons.visibility_off):Icon(Icons.visibility));
+  
 
   }
-}
+
+
+
